@@ -1,60 +1,75 @@
-# Stock Data Analysis and Prediction
+# 📈 TCS Stock Price Analysis & Dashboard
 
 ## Overview
+This project analyzes **multi-year stock market data** using **EDA, feature engineering, and predictive modeling**, and presents insights through an interactive Power BI dashboard.
 
-Analyze the historical data of TCS stock to gain insights into stock behavior, identify trends, and forecast future stock prices.
+---
 
-## Project Workflow
+## Dataset
+Daily stock data with key features:
+- `Date`, `Open`, `High`, `Low`, `Close`, `Volume`
 
-### 1. Data Preparation
+---
 
-#### Dataset:
+## Data Preparation & EDA
+- Cleaned and validated daily stock data
+- Explored price trends, volatility, and volume behavior
+- Visualized Close price over time
 
-**Raw features**: Date, Open, High, Low, Close, Volume
+---
 
-#### Cleaning Steps:
-- Handled missing values
-- Removed duplicates
-- Dropped irrelevant columns like dividends and stock splits
+## Feature Engineering
+- Rolling Mean indicators (MA50, MA200)  
+- Previous Day Close (`Prev_Close`) as a lag feature  
+- Month and Day of Week extracted from Date  
 
-### 2. Exploratory Data Analysis (EDA)
+These features capture temporal dependencies and trends for predictive modeling.
 
-- Stock shows increasing volatility over time.
-- Open, High, Low strongly correlate with Close.
-- Volume provides context for short-term market events.
-- Visualizations include line charts, correlation heatmaps, and trend analysis.
+---
 
-### 3. Feature Engineering
+## Modeling
+- **Time-based train–test split** was performed to preserve chronological order and avoid data leakage 
+- Models explored: **Linear Regression, Ridge Regression, Random Forest, Gradient Boosting, ARIMA**   
+- **Cross-validation** was used to assess model stability before final selection  
 
-Derived features used for modeling:
+**Model Insights:**  
+- Linear and Ridge Regression showed similar performance  
+- Linear Regression was selected for its simplicity, interpretability, and competitive performance
 
-- Prev_Close (previous day’s close)
-- 50-day and 200-day moving averages (MA50, MA200)
-- Range (High - Low)
-- Date-based features: Month, Day_of_Week
+---
 
-### 4. Models and Evaluation
+## Dashboard
+An interactive **Power BI dashboard** was created, featuring:
 
-- Models tried: Linear Regression, Ridge Regression, Random Forest, Gradient Boosting, XGBoost, and ARIMA(time-series model).
-- Evaluation Metrics: RMSE, MAE, MSE, R²
+**Cards**
+- Latest Close Price
+- Highest Price (selected period)
+- Lowest Price (selected period)
+- Average Volume
 
-#### Findings:
+**Charts**
+- Line chart: Close Price with rolling means (MA50, MA200) over time  
+- Column chart: Volume over time
 
-- Linear and Ridge Regression performed best (R² ≈ 0.9999, lowest RMSE).
-- Tree-based models captured non-linear patterns but had slightly higher errors.
-- ARIMA provided forecasts but did not outperform regression models on this dataset.
+**Interactivity**
+- Year-based slicer  
+- DAX measures for latest Close, month extraction, and slicer-aware card values
 
-## Learnings
+---
 
-- Comparing and evaluating multiple machine learning models using multiple metrics (RMSE, MAE, MSE, R²) for stock price prediction.
-- Understanding time-series forecasting using ARIMA.
+## Tools & Technologies
+- **Python**: Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn, Statsmodels  
+- **Power BI**: Data modeling, DAX measures, dashboard creation  
 
-## Future Enhancements
+---
 
-- Incorporate a dashboard or app for visualization and predictions.
-- Automate dataset updates using stock APIs for real-time predictions.
-- Explore additional time-series models like SARIMA or Prophet.
+## Key Takeaways
+- Feature engineering significantly improved predictive performance  
+- Linear models performed as well as more complex models due to strong linearity  
+- Time-aware splitting and cross-validation are critical in stock prediction tasks  
+- Interactive dashboards enhance interpretability and stakeholder communication  
 
+---
 
-**Note:**
-This README was prepared with the assistance of AI to improve clarity and structure.
+## Note on AI Assistance
+> AI tools were used to assist in drafting this README.
